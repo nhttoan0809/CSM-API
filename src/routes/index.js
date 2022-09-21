@@ -1,22 +1,21 @@
-const sample_airbnbRouter = require('./sample_airbnb')
-const sample_analyticsRouter = require('./sample_anylytics')
-const homeRouter = require('./home')
+const express = require('express')
+
+// router
+const authRouter = require('./author')
+const agentRouter = require('./agent')
+
+// controller
+const sluckRouteController = require('../controllers/utilities_controller/SluckRouteController')
 
 const route = (app) => {
 
-    const another_url = [`/`,'/sample_airbnb','/sample_analytics','/sample_geospatial','/sample_duides','/sample_mflix','/sample_restaurants','/sample_supplies','/sample_training','/sample_weatherdata']
+    app.use(express.json()) // for parsing application/json
+    app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-    app.use('/sample_airbnb', sample_airbnbRouter);
-    app.use('/sample_analytics', sample_analyticsRouter);
-    app.use('/', homeRouter);
+    app.use('/auth', authRouter)
+    app.use('/agent', agentRouter)
 
-    // app.use('/sample_geospatial', sample_geospatialRouter);
-    // app.use('/sample_duides', sample_duidesRouter);
-    // app.use('/sample_mflix', sample_mflixRouter);
-    // app.use('/sample_restaurants', sample_restaurantsRouter);
-    // app.use('/sample_supplies', sample_suppliesRouter);
-    // app.use('/sample_training', sample_trainingRouter);
-    // app.use('/sample_weatherdata', sample_weatherdataRouter);
+    app.use('/', sluckRouteController.index);
 }
 
 module.exports = route
