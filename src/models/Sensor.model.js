@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const Float = require('mongoose-float').loadType(mongoose);
 
 const Sensor = new Schema({
     sensor_id: {type: Number},
-    date: {type: Float},
+    date: {type: mongoose.Decimal128},
     is_activated: {type: Boolean},
     warehouse_id: {type: Number},
     x: {type: Number},
