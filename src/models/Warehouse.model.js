@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const Warehouse = new Schema({
-    warehouse_id: {type: Number},
-    name: {type: String},
+    warehouse_id: {type: mongoose.Types.ObjectId},
+    warehouse_name: {type: String},
+    address: {type: String},
     length: {type: Number},
     width: {type: Number},
     height: {type: Number},
-    company_id: {type: Number},
-    station_id: {type: Number}
+    agent_id: {type: mongoose.Types.ObjectId}
 })
 
 module.exports = mongoose.Model('Warehouse', Warehouse)
