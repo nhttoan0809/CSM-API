@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const Company = new Schema({
-    company_id: {type: Number},
-    address: {type: String},
-    name: {type: String},
-    user_id: {type: Number},
+    company_id: {type: mongoose.Types.ObjectId},
+    company_name: {type: String},
+    company_address: {type: String},
+    owner_id: {type: mongoose.Types.ObjectId},
 })
 
 module.exports = mongoose.Model('Company', Company)
