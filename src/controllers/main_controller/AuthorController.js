@@ -20,7 +20,7 @@ class AuthorController{
                 if(docs[0]){
                     data = docs[0]
                 }
-                if(data&&username===data.usr&&password===data.pwd){
+                if(data&&username===data.username&&password===data.password){
                     // generate access token
                     const body = req.body
                     const accessToken = jwt.sign({body}, process.env.SECRET_KEY);
