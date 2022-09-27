@@ -12,7 +12,7 @@ class AuthorController{
         const password = req.body.password
 
         // Connect to db to get data
-        UserModel.find({usr:username, pwd:password}, (err, docs) => {
+        UserModel.find({username:username, password:password}, (err, docs) => {
             if(!err){
                 
                 let data = null
