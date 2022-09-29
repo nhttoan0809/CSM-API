@@ -5,7 +5,7 @@ const Product = new Schema({
     product_id: {type: mongoose.Types.ObjectId},
     warehouse_id: {type: mongoose.Types.ObjectId},
     description: {type: String},
-    pallet_id: {type: Number},
+    pallet_id: {type: mongoose.Types.ObjectId},
     position: {type: String},
     storage_time: {type: Number},
     width: {type: Number},

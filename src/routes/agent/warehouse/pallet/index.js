@@ -11,7 +11,7 @@ const router = express.Router()
 
 // Access
 router.get('/get_all', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/get_all');})
-router.get('/import', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/import');})
+router.post('/import', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/import');})
 router.delete('/:id_pallet/delete', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/delete');})
 router.post('/:id_pallet/add_to_warehouse', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/add_to_warehouse');})
 router.post('/:id_pallet/remove_from_warehouse', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/remove_from_warehouse');})
