@@ -11,7 +11,7 @@ const SluckRouteController = require('../../../../controllers/utilities_controll
 
 // access
 router.get('/connect', ()=> {console.log('url-here: /agent/_id_agent/warehouse/:id_warehouse/station/connect');})
-router.get('/:id_staion/disconnect', ()=> {console.log('url-here: /agent/_id_agent/warehouse/:id_warehouse/station/:id_staion/disconnect');})
+router.delete('/:id_staion/disconnect', ()=> {console.log('url-here: /agent/_id_agent/warehouse/:id_warehouse/station/:id_staion/disconnect');})
 
 router.get('/', SluckRouteController.index);
 

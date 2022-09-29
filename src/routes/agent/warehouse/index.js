@@ -20,9 +20,9 @@ router.use('/:id_warehouse/product', productRouter)
 // Access
 router.get('/get_all', () => {console.log('base-url: /agent/:id_agent/warehouse/get_all');})
 router.get('/add', () => {console.log('base-url: /agent/:id_agent/warehouse/add');})
-router.get('/:id_warehouse/import', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/import');})
-router.delete('/:id_warehouse/export', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/export');})
 router.post('/:id_warehouse/update', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/update');})
+router.post('/:id_warehouse/import', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/import');})
+router.delete('/:id_warehouse/export', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/export');})
 router.delete('/:id_warehouse/delete', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/delete');})
 
 router.get('/', SluckRouteController.index);

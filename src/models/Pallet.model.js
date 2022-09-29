@@ -5,9 +5,10 @@ const Pallet = new Schema({
     pallet_id: {type: mongoose.Types.ObjectId},
     pallet_template_id: {type: mongoose.Types.ObjectId},
     warehouse_id: {type: mongoose.Types.ObjectId},
+    description: {type: String},
     is_used: {type: Boolean},
-    created_date: {type: Date},
-    used_time: {type: Number},
+    import_date: {type: Date},
+    storage_start_date: {type: Date},
     position: {type: String}
 })
 

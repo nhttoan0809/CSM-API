@@ -1,6 +1,6 @@
 const express = require('express');
 const SluckRouteController = require('../../controllers/utilities_controller/SluckRouteController');
-const sluckRouteController = require('../../controllers/utilities_controller/SluckRouteController');
+
 const router = express.Router()
 
 // router

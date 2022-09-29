@@ -1,46 +1,62 @@
 const jwt = require('jsonwebtoken');
+const { Model } = require('mongoose');
 const UserModel = require('../../models/User.model');
 const dotenv = require('dotenv').config();
 
-class AuthorController{
-    
+class AuthorController {
+
     // [POST] auth/login
-    login = (req, res) => {
+    login = async (req, res) => {
 
         // Get data from body
         const username = req.body.username
         const password = req.body.password
 
         // Connect to db to get data
-        UserModel.find({usr:username, pwd:password}, (err, docs) => {
-            if(!err){
-                
-                let data = null
+        UserModel.findOne({ username, password }, (err, user) => {
+            if (!err) {
 
-                if(docs[0]){
-                    data = docs[0]
-                }
-                if(data&&username===data.usr&&password===data.pwd){
-                    // generate access token
-                    const body = req.body
-                    const accessToken = jwt.sign({body}, process.env.SECRET_KEY);
-
+                if (!user) {
                     return res.json({
-                        status: 'Successfully',
-                        access_token: accessToken
+                        status: 'Failure',
+                        message: 'username or password is not valid'
                     })
                 }
-                else{
-                    return res.json({
-                        status: 'failure',
-                        message: 'Username or password is not valid.'
-                    })
-                }
+
+                // generate access token
+                const body = req.body
+                const accessToken = jwt.sign({ body }, process.env.SECRET_KEY);
+
+                // save token to db
+                const user_id = `${user._id.toString()}`
+                const new_access_token = [...user.access_token]
+                new_access_token.push(accessToken)
+
+                UserModel.findOneAndUpdate(
+                    { '_id': user_id },
+                    { access_token: new_access_token },
+                    (err) => {
+                        if(err){
+                            console.log('---> SAVE TOKEN FAILURE');
+                            return res.json({
+                                status: 'Failure',
+                                message: "Can't save token to db"
+                            })
+                        }
+
+                        console.log('---> SAVE TOKEN SUCCESSFULLY');
+                        return res.json({
+                            status: 'Successfully',
+                            access_token: accessToken
+                        })
+                    }
+                )
+                    
             }
-            else{
+            else {
                 return res.json({
-                    status: 'failure',
-                    message: 'Some thing went wrong on db...'
+                    status: 'Failure',
+                    message: 'Some thing went wrong on db!'
                 })
             }
         })
@@ -57,7 +73,7 @@ class AuthorController{
     }
 
     // [POST] auth/update
-    udpate = (req, res) => {
+    updateInformation = (req, res) => {
 
     }
 }
