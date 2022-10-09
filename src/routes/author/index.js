@@ -8,15 +8,18 @@ const companyRouter = require('./company')
 const validateToken = require('../../controllers/middleware/validateToken')
 const SluckRouteController = require('../../controllers/utilities_controller/SluckRouteController')
 const AuthorController = require('../../controllers/main_controller/AuthorController')
+const getUserByToken = require('../../controllers/middleware/getUserByToken')
 
 // Nested route
 // base-url: auth
 router.use('/company', companyRouter)
 
 router.post('/login' , AuthorController.login)
-router.get('/logout', () => {console.log('url here: /auth/lgout');})
-router.post('/register', () => {console.log('url here: /auth/register');})
-router.post('/update', () => {console.log('url here: /auth/udpate');})
+router.get('/logout', 
+// getUserByToken, 
+AuthorController.logout)
+router.post('/register', getUserByToken, AuthorController.register)
+router.post('/update', getUserByToken, AuthorController.updateInformation)
 
 router.get('/', SluckRouteController.index);
 
