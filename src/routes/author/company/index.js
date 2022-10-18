@@ -5,8 +5,8 @@ const router = express.Router()
 // router
 
 // controller
-
-router.post('/update', ()=> {console.log('url here: /auth/company/update');})
+const companyController = require('../../../controllers/main_controller/CompanyController')
+router.post('/update', companyController.updateCompanyInfomation)
 
 router.get('/', SluckRouteController.index);
 

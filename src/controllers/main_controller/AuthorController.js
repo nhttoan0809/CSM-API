@@ -62,19 +62,37 @@ class AuthorController {
         })
     }
 
-    // [GET] auth/logout
+    //[GET] auth/logout
     logout = (req, res) => {
-
+        const body = req.body
+        return res.json({
+            status: "Successfully",
+            data: {
+                body: body
+            }
+        })
     }
 
     // [POST] auth/register
     register = (req, res) => {
-
+        const body = req.body
+        return res.json({
+            status: "Successfully",
+            data: {
+                body: body
+            }
+        })
     }
 
     // [POST] auth/update
     updateInformation = (req, res) => {
-
+        const body = req.body
+        return res.json({
+            status: "Successfully",
+            data: {
+                body: body
+            }
+        })
     }
 }
 

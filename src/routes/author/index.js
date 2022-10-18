@@ -14,8 +14,8 @@ const AuthorController = require('../../controllers/main_controller/AuthorContro
 router.use('/company', companyRouter)
 
 router.post('/login' , AuthorController.login)
-router.get('/logout', () => {console.log('url here: /auth/lgout');})
-router.post('/register', () => {console.log('url here: /auth/register');})
+router.get('/logout', AuthorController.logout)
+router.post('/register', AuthorController.register)
 router.post('/update', () => {console.log('url here: /auth/udpate');})
 
 router.get('/', SluckRouteController.index);

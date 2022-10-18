@@ -5,18 +5,18 @@ const router = express.Router()
 // router
 
 // controller
-
+const PalletController = require('../../../../controllers/main_controller/PalletController')
 // Nested route
 // Base url: agent/:id_agent/warehouse/:id_warehouse/pallet
 
 // Access
-router.get('/get_all', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/get_all');})
-router.post('/import', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/import');})
-router.delete('/:id_pallet/delete', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/delete');})
-router.post('/:id_pallet/add_to_warehouse', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/add_to_warehouse');})
-router.post('/:id_pallet/remove_from_warehouse', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/remove_from_warehouse');})
-router.post('/:id_pallet/update_information', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/update_information');})
-router.post('/:id_pallet/update_position', () => {console.log('url here: agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/update_position');})
+router.get('/get_all', PalletController.get_all_pallet_information )
+router.post('/import', PalletController.import_pallet)
+router.delete('/:id_pallet/delete', PalletController.delete_pallet)
+router.post('/:id_pallet/add_to_warehouse', PalletController.add_pallet_to_warehouse)
+router.post('/:id_pallet/remove_from_warehouse', PalletController.remove_pallet_form_warehouse)
+router.post('/:id_pallet/update_information', PalletController.update_pallet_information)
+router.post('/:id_pallet/update_position', PalletController.update_pallet_position)
 
 router.get('/', SluckRouteController.index);
 

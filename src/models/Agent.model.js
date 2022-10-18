@@ -8,4 +8,4 @@ const Agent = new Schema({
     company_id: {type: mongoose.Types.ObjectId}
 })
 
-module.exports = mongoose.Model('Agent', Agent)
+module.exports = mongoose.model('Agent', Agent)

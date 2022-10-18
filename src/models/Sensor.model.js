@@ -9,4 +9,4 @@ const Sensor = new Schema({
     warehouse_id: {type: mongoose.Types.ObjectId},
 })
 
-module.exports = mongoose.Model('Sensor', Sensor)
+module.exports = mongoose.model('Sensor', Sensor)

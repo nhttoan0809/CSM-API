@@ -10,4 +10,4 @@ const Station = new Schema({
     linked_station_id: {type: Number}
 })
 
-module.exports = mongoose.Model('station', Station)
+module.exports = mongoose.model('Station', Station)

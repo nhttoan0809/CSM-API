@@ -7,15 +7,16 @@ const router = express.Router()
 const warehouseRouter = require('./warehouse')
 
 // controller
+const agentController = require('./../../controllers/main_controller/AgentController')
 
 // Nested route
 // base-url: agent/
 router.use('/:id_agent/warehouse', warehouseRouter)
 
 // Access
-router.get('/add', () => {console.log('url here: /agent/add');})
-router.post('/:id_agent/update', () => {console.log('url here: /agent/:id_agent/update');})
-router.delete('/:id_agent/delete', () => {console.log('url here: /agent/:id_agent/delete');})
+router.post('/add', agentController.add)
+router.post('/:id_agent/update', agentController.update)
+router.delete('/:id_agent/delete', agentController.delete)
 
 router.get('/', SluckRouteController.index);
 
