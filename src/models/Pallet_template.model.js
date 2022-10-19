@@ -11,4 +11,4 @@ const Pallet_template = new Schema({
     vertical_separators: {type: Number},
 })
 
-module.exports = mongoose.Model('Pallet_template', Pallet_template)
+module.exports = mongoose.model('Pallet_template', Pallet_template)

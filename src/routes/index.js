@@ -17,9 +17,9 @@ const route = (app) => {
     app.use(express.json()) // for parsing application/json
     app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-    app.use('/auth', validateToken, authRouter)
-    app.use('/agent', validateToken, agentRouter)
-    app.use('/pallet_template', validateToken, pallet_templateRouter)
+    app.use('/auth' , authRouter)
+    app.use('/agent', agentRouter)
+    app.use('/pallet_template', pallet_templateRouter)
 
     app.use('/test_data', test_dataRouter)
 

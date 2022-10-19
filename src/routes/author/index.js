@@ -15,11 +15,9 @@ const getUserByToken = require('../../controllers/middleware/getUserByToken')
 router.use('/company', companyRouter)
 
 router.post('/login' , AuthorController.login)
-router.get('/logout', 
-// getUserByToken, 
-AuthorController.logout)
-router.post('/register', getUserByToken, AuthorController.register)
-router.post('/update', getUserByToken, AuthorController.updateInformation)
+router.get('/logout', AuthorController.logout)
+router.post('/register', AuthorController.register)
+router.post('/update', () => {console.log('url here: /auth/udpate');})
 
 router.get('/', SluckRouteController.index);
 

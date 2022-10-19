@@ -9,7 +9,7 @@ const productRouter = require('./product')
 const stationRouter = require('./station')
 
 // controller
-
+const WarehouseController = require('../../../controllers/main_controller/WarehouseController')
 // Nested route
 // Base url: agent/:id_agent/warehouse
 router.use('/:id_warehouse/station', stationRouter)
@@ -18,12 +18,12 @@ router.use('/:id_warehouse/pallet', palletRouter)
 router.use('/:id_warehouse/product', productRouter)
 
 // Access
-router.get('/get_all', () => {console.log('base-url: /agent/:id_agent/warehouse/get_all');})
-router.get('/add', () => {console.log('base-url: /agent/:id_agent/warehouse/add');})
-router.post('/:id_warehouse/update', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/update');})
-router.post('/:id_warehouse/import', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/import');})
-router.delete('/:id_warehouse/export', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/export');})
-router.delete('/:id_warehouse/delete', () => {console.log('base-url: /agent/:id_agent/warehouse/:id_warehouse/delete');})
+router.get('/get_all', WarehouseController.get_allwarehouse_information)
+router.post('/add', WarehouseController.add_warehouse)
+router.post('/:id_warehouse/update', WarehouseController.update_warehouse_information)
+router.post('/:id_warehouse/import', WarehouseController.import_warehouse)
+router.delete('/:id_warehouse/export', WarehouseController.export_warehouse)
+router.delete('/:id_warehouse/delete', WarehouseController.delete_warehouse)
 
 router.get('/', SluckRouteController.index);
 

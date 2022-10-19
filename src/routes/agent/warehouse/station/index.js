@@ -5,13 +5,13 @@ const SluckRouteController = require('../../../../controllers/utilities_controll
 // router
 
 // controller
-
+const StationController = require('../../../../controllers/main_controller/StationController')
 // Nested route
 // base-url: /agent/:id_agent/warehouse/:id_warehouse/station
 
 // access
-router.get('/connect', ()=> {console.log('url-here: /agent/_id_agent/warehouse/:id_warehouse/station/connect');})
-router.delete('/:id_staion/disconnect', ()=> {console.log('url-here: /agent/_id_agent/warehouse/:id_warehouse/station/:id_staion/disconnect');})
+router.get('/connect', StationController.station_connect)
+router.delete('/:id_staion/disconnect', StationController.station_disconnect)
 
 router.get('/', SluckRouteController.index);
 

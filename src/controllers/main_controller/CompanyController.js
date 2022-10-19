@@ -3,8 +3,14 @@ const CompanyModel = require('./../../models/Company.model')
 class CompanyController{
 
     // [POST] auth/company/update
-    path_updateCompanyInfomation = (req, res) => {
-
+    updateCompanyInfomation = (req, res) => {
+        const body = req.body
+        return res.json({
+            status: "Successfully",
+            data: {
+                body: body
+            }
+        })
     }
 
 }

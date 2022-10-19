@@ -13,4 +13,4 @@ const Product = new Schema({
     height: {type: Number},
 })
 
-module.exports = mongoose.Model('Product', Product)
+module.exports = mongoose.model('Product', Product)
