@@ -15,7 +15,6 @@ class AuthorController {
         // Connect to db to get data
         UserModel.findOne({ username, password }, (err, user) => {
             if (!err) {
-
                 if (!user) {
                     return res.json({
                         status: 'Failure',
@@ -56,19 +55,45 @@ class AuthorController {
             else {
                 return res.json({
                     status: 'Failure',
-                    message: 'Some thing went wrong on db!'
+                    message: `Can't access to db!!!`
                 })
             }
         })
     }
 
-    //[GET] auth/logout
+    // [GET] auth/re_login
+    re_login = async (req, res) => {
+        
+    }
+
+    // [GET] auth/logout
     logout = (req, res) => {
-        const body = req.body
-        return res.json({
-            status: "Successfully",
-            data: {
-                body: body
+
+        const accesToken = req.headers['authorization']
+        const id_user = req.id_user
+        
+        console.log(`id_user: ${id_user}`)
+        console.log(`accessToken: ${accesToken}`)
+        
+        UserModel.findOne({_id: id_user}, (err, user) => {
+            if(!err){
+                if(user){
+                    const new_access_token = user.access_token.filter((token=>token!==accesToken))
+                    UserModel.findOneAndUpdate({_id: user._id}, {access_token: new_access_token}, (err) =>{
+                        if(!err){
+                            return res.json({
+                                status: 'Successfully',
+                                message: "Logout successfully!"
+                            })
+                        }
+                    })
+                }
+            }
+            else{
+                return res.json({
+                    status: "Failure",
+                    message: "Can't access to db to remove token"
+                })
             }
         })
     }

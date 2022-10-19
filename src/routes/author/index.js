@@ -8,6 +8,7 @@ const companyRouter = require('./company')
 const validateToken = require('../../controllers/middleware/validateToken')
 const SluckRouteController = require('../../controllers/utilities_controller/SluckRouteController')
 const AuthorController = require('../../controllers/main_controller/AuthorController')
+const getUserByToken = require('../../controllers/middleware/getUserByToken')
 
 // Nested route
 // base-url: auth
