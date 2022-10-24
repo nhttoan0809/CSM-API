@@ -9,7 +9,6 @@ const warehouseRouter = require("./warehouse");
 const AgentController = require("../../controllers/main_controller/AgentController");
 const checkAndGetIdAgent = require("../../controllers/middleware/checkAndGetIdAgent");
 const SluckRouteController = require("../../controllers/utilities_controller/SluckRouteController");
-
 // Nested route
 // base-url: agent/
 router.use("/:id_agent/warehouse", checkAndGetIdAgent, warehouseRouter);
