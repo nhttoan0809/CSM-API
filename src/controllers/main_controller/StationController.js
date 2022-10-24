@@ -1,29 +1,29 @@
-const StationModel = require('./../../models/Station.model')
+const StationModel = require("./../../models/Station.model");
 
-class StationController{
+class StationController {
+  // [GET] agent/:id_agent/warehouse/:id_warehouse/station/connect
+  station_connect = (req, res) => {
 
-    // [GET] agent/_id_agent/warehouse/:id_warehouse/station/connect
-    station_connect = (req,res) =>{                
-        //const body = req.body
-        const params = req.query
-        return res.json({
-            status: "Successfully",
-            data: {
-                body: params
-            }
-        })
-    }
-    // [DELETE] agent/_id_agent/warehouse/:id_warehouse/station/:id_station/disconnect
-    station_disconnect = (req,res) =>{                
-        const body = req.body
-        return res.json({
-            status: "Successfully",
-            data: {
-                body: body
-            }
-        })
-    }
+    const data_iot_api = req.data_get_token
 
+    console.log('data_iot_api: ', data_iot_api);
+
+    return res.json({
+      status: "Successfully",
+      data: data_iot_api,
+    });
+  };
+
+  // [DELETE] agent/:id_agent/warehouse/:id_warehouse/station/:id_station/disconnect
+  station_disconnect = (req, res) => {
+    const body = req.body;
+    return res.json({
+      status: "Successfully",
+      data: {
+        body: body,
+      },
+    });
+  };
 }
 
-module.exports = new StationController
+module.exports = new StationController();

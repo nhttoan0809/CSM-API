@@ -11,17 +11,18 @@ const test_dataRouter = require('./test_data')
 
 // controller
 const sluckRouteController = require('../controllers/utilities_controller/SluckRouteController')
+const getUserByToken = require('../controllers/middleware/getUserByToken')
 
 const route = (app) => {
 
     app.use(express.json()) // for parsing application/json
     app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-    app.use('/auth' , authRouter)
-    app.use('/agent', agentRouter)
+    app.use('/auth', validateToken, authRouter)
+    app.use('/agent', validateToken, getUserByToken, agentRouter)
     app.use('/pallet_template', pallet_templateRouter)
 
-    app.use('/test_data', test_dataRouter)
+    // app.use('/test_data', test_dataRouter)
 
     app.use('/', sluckRouteController.index);
 }

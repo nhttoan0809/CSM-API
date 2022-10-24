@@ -1,5 +1,4 @@
 const express = require('express')
-const SluckRouteController = require('../../../controllers/utilities_controller/SluckRouteController')
 const router = express.Router()
 
 // router
@@ -7,23 +6,28 @@ const sensorRouter = require('./sensor')
 const palletRouter = require('./pallet')
 const productRouter = require('./product')
 const stationRouter = require('./station')
+const iot_accountRouter = require('./iot_account')
 
 // controller
 const WarehouseController = require('../../../controllers/main_controller/WarehouseController')
+const checkAndGetIdWarehouse = require('../../../controllers/middleware/checkAndGetIdWarehouse')
+const SluckRouteController = require('../../../controllers/utilities_controller/SluckRouteController')
+
 // Nested route
 // Base url: agent/:id_agent/warehouse
-router.use('/:id_warehouse/station', stationRouter)
-router.use('/:id_warehouse/sensor', sensorRouter)
-router.use('/:id_warehouse/pallet', palletRouter)
-router.use('/:id_warehouse/product', productRouter)
+router.use('/:id_warehouse/iot_account', checkAndGetIdWarehouse, iot_accountRouter)
+router.use('/:id_warehouse/station', checkAndGetIdWarehouse, stationRouter)
+router.use('/:id_warehouse/sensor', checkAndGetIdWarehouse, sensorRouter)
+router.use('/:id_warehouse/pallet', checkAndGetIdWarehouse, palletRouter)
+router.use('/:id_warehouse/product', checkAndGetIdWarehouse, productRouter)
 
 // Access
-router.get('/get_all', WarehouseController.get_allwarehouse_information)
-router.post('/add', WarehouseController.add_warehouse)
-router.post('/:id_warehouse/update', WarehouseController.update_warehouse_information)
-router.post('/:id_warehouse/import', WarehouseController.import_warehouse)
-router.delete('/:id_warehouse/export', WarehouseController.export_warehouse)
-router.delete('/:id_warehouse/delete', WarehouseController.delete_warehouse)
+router.get('/get_all', WarehouseController.get_all)
+router.post('/add', WarehouseController.add)
+router.post('/:id_warehouse/update', WarehouseController.update)
+router.post('/:id_warehouse/import', WarehouseController.import)
+router.delete('/:id_warehouse/export', WarehouseController.export)
+router.delete('/:id_warehouse/delete', WarehouseController.delete)
 
 router.get('/', SluckRouteController.index);
 

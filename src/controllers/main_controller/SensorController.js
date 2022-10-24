@@ -2,7 +2,7 @@ const SensorModel = require('./../../models/Sensor.model')
 
 class SensorController{
 
-    // [GET] agent/_id_agent/warehouse/:id_warehouse/sensor/get_all
+    // [GET] agent/:id_agent/warehouse/:id_warehouse/sensor/get_all
         get_all_sensor_information = (req,res) =>{                
             const body = req.body
             return res.json({

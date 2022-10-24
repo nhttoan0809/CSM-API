@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const Sensor = new Schema({
     sensor_id: {type: mongoose.Types.ObjectId},
-    data: {type: mongoose.Types.Decimal128},
-    is_activated: {type: Boolean},
+    data_id: {type: String},
+    station_id: {type: mongoose.Types.ObjectId},
     position: {type: String},
-    warehouse_id: {type: mongoose.Types.ObjectId},
+    status: {type: Boolean},
 })
 
 module.exports = mongoose.model('Sensor', Sensor)
