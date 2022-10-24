@@ -1,12 +1,15 @@
 const express = require('express');
-const SluckRouteController = require('../../../controllers/utilities_controller/SluckRouteController');
 const router = express.Router()
 
 // router
 
 // controller
+const CompanyController = require('../../../controllers/main_controller/CompanyController');
+const SluckRouteController = require('../../../controllers/utilities_controller/SluckRouteController');
 
-router.post('/update', ()=> {console.log('url here: /auth/company/update');})
+// Access
+router.get('/getInfor', CompanyController.getInfor)
+router.post('/update', CompanyController.update)
 
 router.get('/', SluckRouteController.index);
 

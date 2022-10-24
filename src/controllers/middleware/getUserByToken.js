@@ -31,9 +31,10 @@ module.exports = (req, res, next) => {
                 next();
             }
             else{
+                console.log(`Token don't match with any user\n\n\n`);
                 return res.json({
                     status: 'Failure',
-                    message: `Token don't match with any user\n\n\n`
+                    message: `Token don't match with any user`
                 });
             }
         }

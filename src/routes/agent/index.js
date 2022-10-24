@@ -1,22 +1,25 @@
-const express = require('express');
-const SluckRouteController = require('../../controllers/utilities_controller/SluckRouteController');
+const express = require("express");
 
-const router = express.Router()
+const router = express.Router();
 
 // router
-const warehouseRouter = require('./warehouse')
+const warehouseRouter = require("./warehouse");
 
 // controller
+const AgentController = require("../../controllers/main_controller/AgentController");
+const checkAndGetIdAgent = require("../../controllers/middleware/checkAndGetIdAgent");
+const SluckRouteController = require("../../controllers/utilities_controller/SluckRouteController");
 
 // Nested route
 // base-url: agent/
-router.use('/:id_agent/warehouse', warehouseRouter)
+router.use("/:id_agent/warehouse", checkAndGetIdAgent, warehouseRouter);
 
 // Access
-router.get('/add', () => {console.log('url here: /agent/add');})
-router.post('/:id_agent/update', () => {console.log('url here: /agent/:id_agent/update');})
-router.delete('/:id_agent/delete', () => {console.log('url here: /agent/:id_agent/delete');})
+router.get("/get_all", AgentController.get_all);
+router.post("/add", AgentController.add);
+router.post("/:id_agent/update", AgentController.update);
+router.delete("/:id_agent/delete", AgentController.delete);
 
-router.get('/', SluckRouteController.index);
+router.get("/", SluckRouteController.index);
 
-module.exports = router
+module.exports = router;

@@ -12,4 +12,4 @@ const Pallet = new Schema({
     position: {type: String}
 })
 
-module.exports = mongoose.Model('Pallet', Pallet)
+module.exports = mongoose.model('Pallet', Pallet)

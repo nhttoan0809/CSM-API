@@ -11,4 +11,4 @@ const Warehouse = new Schema({
     agent_id: {type: mongoose.Types.ObjectId}
 })
 
-module.exports = mongoose.Model('Warehouse', Warehouse)
+module.exports = mongoose.model('Warehouse', Warehouse)
