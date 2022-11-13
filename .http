@@ -1,5 +1,0 @@
-POST https://cold-storage-management-api.herokuapp.com/auth/login
-Content-Type: application/x-www-form-urlencoded
-
-username=thanhtoan
-&password=thanhtoan123
