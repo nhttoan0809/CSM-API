@@ -172,7 +172,8 @@ class AuthorController {
             status: "Successfully",
             data: {
               user_id: user._id,
-              name: user.username,
+              username: user.username,
+              name: user.name,
               email: user.email,
             },
           });

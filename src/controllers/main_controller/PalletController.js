@@ -72,8 +72,11 @@ class PalletController {
 
   // [DELETE] agent/:id_agent/warehouse/:id_warehouse/pallet/:id_pallet/delete
   delete_pallet = (req, res) => {
-    // Get data from params
+
     const id_warehouse = req.id_warehouse;
+
+    // Get data from params
+    const id_pallet = req.params['id_pallet'];
 
     // Update any product are assign to this pallet (product will be delete pallet_id and position field)
     ProductModel.updateMany(

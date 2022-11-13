@@ -37,6 +37,37 @@ class WarehouseController {
     );
   };
 
+  // [GET] agent/:id_agent/warehouse/:id_warehouse/get_infor
+  get_infor = async (req, res) => {
+    const id_agent = req.id_agent;
+
+    // Get params
+    const id_warehouse = req.params[id_warehouse];
+
+    try {
+      const warehouse = await WarehouseModel.findOne({
+        _id: id_warehouse,
+      });
+
+      if (warehouse) {
+        return res.json({
+          status: "Successfully",
+          data: warehouse,
+        });
+      } else {
+        return res.json({
+          status: "Failure",
+          message: "Get all warehouse failure",
+        });
+      }
+    } catch (error) {
+      return res.json({
+        status: "Failure",
+        message: "Get all warehouse failure",
+      });
+    }
+  };
+
   // [POST] agent/:id_agent/warehouse/add
   add = (req, res) => {
     const id_agent = req.id_agent;
@@ -199,8 +230,8 @@ class WarehouseController {
     // Get params
     const id_warehouse = req.params["id_warehouse"];
 
-    // Get data from body
-    const id_product = req.body.id_product;
+    // Get data from query
+    const id_product = req.query["id_product"];
 
     ProductModel.findOneAndDelete(
       {
@@ -234,29 +265,33 @@ class WarehouseController {
     // Get params
     const id_warehouse = req.params["id_warehouse"];
 
-    const pallet = await PalletModel.deleteMany({
-      warehouse_id: id_warehouse,
-    }).exec();
-    const product = await ProductModel.deleteMany({
-      warehouse_id: id_warehouse,
-    }).exec();
-    const station = await StationModel.deleteMany({
-      warehouse_id: id_warehouse,
-    }).exec();
+    // const pallet = await PalletModel.deleteMany({
+    //   warehouse_id: id_warehouse,
+    // }).exec();
+    // const product = await ProductModel.deleteMany({
+    //   warehouse_id: id_warehouse,
+    // }).exec();
+    // const station = await StationModel.deleteMany({
+    //   warehouse_id: id_warehouse,
+    // }).exec();
 
-    const palletDeleted = pallet.deletedCount;
-    const productDeleted = product.deletedCount;
-    const stationDeleted = station.deletedCount;
+    // const palletDeleted = pallet.deletedCount;
+    // const productDeleted = product.deletedCount;
+    // const stationDeleted = station.deletedCount;
 
-    if (palletDeleted > 0 || productDeleted > 0 || stationDeleted > 0) {
-      return res.json({
-        status: "Successfully",
-        message: "success access",
+    try {
+      await WarehouseModel.deleteOne({
+        _id: id_warehouse,
       });
-    } else {
+
       return res.json({
         status: "Successfully",
-        message: "success access",
+        message: "Delete warehouse successfully",
+      });
+    } catch (error) {
+      return res.json({
+        status: "Failure",
+        message: "Delete warehouse failure",
       });
     }
   };

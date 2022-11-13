@@ -4,7 +4,13 @@ const ProductModel = require("./../../models/Product.model");
 class ProductController {
   // [GET] agent/:id_agent/warehouse/:id_warehouse/product/get_all
   get_all_product_information = (req, res) => {
-    ProductModel.find({}, (err, pallets) => {
+
+    // Get params
+    const id_warehouse = req.id_warehouse
+
+    ProductModel.find({
+      warehouse_id: id_warehouse
+    }, (err, pallets) => {
       if (err) {
         return res.json({
           status: "Failure",

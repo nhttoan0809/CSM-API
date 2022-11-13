@@ -2,10 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 // router
-const sensorRouter = require('./sensor')
 const palletRouter = require('./pallet')
 const productRouter = require('./product')
-const stationRouter = require('./station')
 const iot_accountRouter = require('./iot_account')
 
 // controller
@@ -16,14 +14,13 @@ const SluckRouteController = require('../../../controllers/utilities_controller/
 // Nested route
 // Base url: agent/:id_agent/warehouse
 router.use('/:id_warehouse/iot_account', checkAndGetIdWarehouse, iot_accountRouter)
-router.use('/:id_warehouse/station', checkAndGetIdWarehouse, stationRouter)
-router.use('/:id_warehouse/sensor', checkAndGetIdWarehouse, sensorRouter)
 router.use('/:id_warehouse/pallet', checkAndGetIdWarehouse, palletRouter)
 router.use('/:id_warehouse/product', checkAndGetIdWarehouse, productRouter)
 
 // Access
 router.get('/get_all', WarehouseController.get_all)
 router.post('/add', WarehouseController.add)
+router.get('/:id_warehouse/get_infor', WarehouseController.get_infor)
 router.post('/:id_warehouse/update', WarehouseController.update)
 router.post('/:id_warehouse/import', WarehouseController.import)
 router.delete('/:id_warehouse/export', WarehouseController.export)

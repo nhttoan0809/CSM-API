@@ -1,28 +1,29 @@
 const StationModel = require("./../../models/Station.model");
 
 class StationController {
-  // [GET] agent/:id_agent/warehouse/:id_warehouse/station/connect
-  station_connect = (req, res) => {
+  // [GET] agent/:id_agent/warehouse/:id_warehouse/iot_account/:id_iot_account/station/get_all
+  get_all = async (req, res) => {
+    // Get params
 
-    const data_iot_api = req.data_get_token
+    const id_iot_account = req.id_iot_account;
 
-    console.log('data_iot_api: ', data_iot_api);
+    console.log("id_iot_account: ", id_iot_account);
 
-    return res.json({
-      status: "Successfully",
-      data: data_iot_api,
-    });
-  };
+    try {
+      const stationList = await StationModel.find({
+        iotAccount_id: id_iot_account,
+      });
 
-  // [DELETE] agent/:id_agent/warehouse/:id_warehouse/station/:id_station/disconnect
-  station_disconnect = (req, res) => {
-    const body = req.body;
-    return res.json({
-      status: "Successfully",
-      data: {
-        body: body,
-      },
-    });
+      return res.json({
+        status: "Successfully",
+        data: stationList,
+      });
+    } catch (error) {
+      return res.json({
+        status: "Failure",
+        message: "Get all station failure",
+      });
+    }
   };
 }
 
