@@ -22,7 +22,7 @@ class IotAccountController {
       if (account) {
         return res.json({
           status: "Failure",
-          message: "Account is already exist",
+          message: "Tài khoản đã tồn tại",
         });
       }
 
@@ -31,7 +31,7 @@ class IotAccountController {
       if (dataToken.status !== "Successfully")
         return res.json({
           status: "Failure",
-          message: "Can't login to iotlab-fakedata to get token",
+          message: "Tài khoản hoặc mật khẩu không hợp lệ",
         });
 
       const token = dataToken.data.token;
@@ -114,7 +114,7 @@ class IotAccountController {
     } catch (error) {
       return res.json({
         status: "Failure",
-        message: `catch an error: ${error}`,
+        message: `Lỗi xác thực: ${error}`,
       });
     }
   };
@@ -127,25 +127,25 @@ class IotAccountController {
     const id_iot_account = req.params["id_iot_account"];
 
     try {
-      const stationList = await StationModel.find({
-        iotAccount_id: id_iot_account,
-      });
+      // const stationList = await StationModel.find({
+      //   iotAccount_id: id_iot_account,
+      // });
 
-      const deleteSensorListPromises = stationList.map(async (station) => {
-        return await SensorModel.deleteMany({
-          station_id: station._id,
-        });
-      });
+      // const deleteSensorListPromises = stationList.map(async (station) => {
+      //   return await SensorModel.deleteMany({
+      //     station_id: station._id,
+      //   });
+      // });
 
-      await Promise.all(deleteSensorListPromises);
+      // await Promise.all(deleteSensorListPromises);
 
-      const deleteStationListPromises = stationList.map(async (station) => {
-        return await StationModel.findOneAndDelete({
-          _id: station._id,
-        });
-      });
+      // const deleteStationListPromises = stationList.map(async (station) => {
+      //   return await StationModel.findOneAndDelete({
+      //     _id: station._id,
+      //   });
+      // });
 
-      await Promise.all(deleteStationListPromises);
+      // await Promise.all(deleteStationListPromises);
 
       await IotAccountModel.deleteOne({ _id: id_iot_account });
 
