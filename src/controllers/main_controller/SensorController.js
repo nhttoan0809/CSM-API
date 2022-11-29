@@ -55,6 +55,8 @@ class SensorController {
 
   // [POST] agent/:id_agent/warehouse/:id_warehouse/iot_account/:id_iot_account/station/:id_station/sensor/:id_sensor/set_status
   set_status = async (req, res) => {
+    const id_station = req.id_station;
+
     // Get data from params
     const id_sensor = req.params["id_sensor"];
 
@@ -90,6 +92,7 @@ class SensorController {
               $ne: id_sensor,
             },
             status: true,
+            station_id: id_station,
           },
           {
             status: false,

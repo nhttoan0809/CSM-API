@@ -56,7 +56,7 @@ class AgentController {
           } else {
             const id_company = company._id;
             // Main Execute
-            AgentModel.find({ id_company }, (err, agents) => {
+            AgentModel.find({ company_id: id_company }, (err, agents) => {
               if (err) {
                 return res.json({
                   status: "Failure",

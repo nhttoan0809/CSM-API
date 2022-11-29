@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { Model } = require("mongoose");
 const UserModel = require("../../models/User.model");
-const CompanyModel = require("../../models/Company.model");
 const dotenv = require("dotenv").config();
 
 class AuthorController {
@@ -139,32 +138,16 @@ class AuthorController {
             access_token: [],
           });
 
-          user.save((err, docs) => {
+          user.save((err) => {
             if (err) {
               return res.json({
                 status: "Failure",
                 message: "Can't create account on db.",
               });
             } else {
-              console.log("docs: ", docs);
-              const company = CompanyModel({
-                company_name: companyName,
-                company_address: "",
-                owner_id: docs._id,
-              });
-
-              company.save((err) => {
-                if (err) {
-                  return res.json({
-                    status: "Failure",
-                    message: "Can't create account on db.",
-                  });
-                } else {
-                  return res.json({
-                    status: "Successfully",
-                    message: "Sign up successfully.",
-                  });
-                }
+              return res.json({
+                status: "Successfully",
+                message: "Sign up successfully.",
               });
             }
           });
