@@ -1,7 +1,8 @@
 var axios = require("axios");
 var qs = require("qs");
 
-const baseUrl = `https://iotlab-fakedata.herokuapp.com/api`;
+// const baseUrl = `https://iotlab-fakedata.herokuapp.com/api`;
+const baseUrl = `http://localhost:8080`;
 
 module.exports = {
   getToken: async (username, password) => {
