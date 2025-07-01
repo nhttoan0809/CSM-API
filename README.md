@@ -1,10 +1,17 @@
 # Cold Storage Management API
 
+## Definition
+
+❄️ **Cold Storage Management (CSM)** is a smart system designed to simulate a real-world cold storage facility and its temperature-controlled products, powered by integrated IoT sensors.  
+Its mission: empower managers and supervisors to monitor product conditions in real time through live temperature data, enabling informed, data-driven decisions for optimal storage and safety. 📦🌡️
+
 ## Overview
 
 Cold Storage Management API is a robust backend service designed to power a modern cold storage management system. Acting as the core middleware, it handles all business logic and data operations for warehouses, pallets, products, sensors, and more. The API also serves as a bridge between client applications and third-party IoT sensor platforms, enabling seamless integration and real-time monitoring of temperature-controlled environments.
 
 Originally developed to support a graduation thesis project, this system provides a scalable foundation for managing cold storage facilities, ensuring data integrity, security, and extensibility.
+
+> ⚡ **Note:** This backend is a necessary component of the larger [Cold Storage Management System](https://github.com/nhttoan0809/CSM) and is not intended to be used as a standalone application.
 
 ---
 
